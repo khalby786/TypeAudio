@@ -1,17 +1,14 @@
-Welcome To TransKribe
-----------------------
+# Welcome To TransKribe
 
-TransKribe is a spin-off of the oTranscribe website, which is used for transcribing videos and audios.
+TransKribe is a spin-off of the oTranscribe website, which is used for transcribing videos and audios. 
 
 Load a file from the computer and start transcribing.
 
-F1: Fast Forward
-F2: Rewind
-ESC: Pause And Play
-
-The text is automatically saved to the browser's storage.
-
-Insert interactive timestamps.
+* F1: Fast Forward
+* F2: Rewind
+* ESC: Pause And Play
+* The text is automatically saved to the browser's ```localStorage```.
+* Insert interactive timestamps.
 
 And many other text editing tools.
 
