@@ -56,7 +56,9 @@ function handleFiles(event) {
 	var files = event.target.files;
 	$("#rlly").attr("src", URL.createObjectURL(files[0]));
 	document.getElementById("rllly").load();
-  var fileNameForText = files[0].name
+  var fileNameForText = files[0].name;
+  document.getElementById("rll").style.display = "none";
+  document.getElementById("rll").style.top = 0;
 
 }
   
