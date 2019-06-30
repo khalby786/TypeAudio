@@ -12,19 +12,6 @@ ul {
   text-align: left;
 }
 
-/* Slideshow container */
-.slideshow-container {
-  position: relative;
-  background: white;
-}
-
-/* Slides */
-.mySlides {
-  display: none;
-  padding: 80px;
-  text-align: center;
-}
-
 
 /*.prev, .next {
   cursor: pointer;
@@ -53,29 +40,6 @@ ul {
   color: white;
 }*/
 
-/* The dot/bullet/indicator container */
-.dot-container {
-  text-align: center;
-  padding: 20px;
-  background: white;
-}
-
-/* The dots/bullets/indicators */
-.dot {
-  cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-/* Add a background color to the active dot/circle */
-.active, .dot:hover {
-  background-color: #717171;
-}
 
 #textbox {
   user-select: text;
@@ -267,25 +231,27 @@ header {
   margin-left: -10px;
   width: 100%;
   top: 0px;
-  background-color: black;
+  background-color: /*#AED6F1#85C1E9*/white;
   position: fixed;
-  color: white;
+  color: black;
+  border-bottom: 1px solid black;
 }
 
 #time {
   margin-top: 0px;
+  color: black;
 }
 
 #control {
   position: fixed;
-  right: 200px;
+  right: 10px;
   margin-top: 10px;
 }
 
 .textformatstyles {
   padding-top: 5px;
   padding-bottom: 5px;
-  color: #222;
+  color: black;
   font-size: 14px;
   line-height: 14px;
   font-weight: 600;
@@ -303,40 +269,76 @@ header {
 }
 
 #wc {
-  color: white;
+  color: black;
   content: " words";
   font-size: 15px;
+  float: left;
+  text-align: center;
+  margin-left: 45%;
+  margin-top: 3px;
 }
 
 .timestamp {
   color: blue;
 }
 
-#about {
-  width: 15%;
+#bottombar {
   position: fixed;
-  left: 30px;
-  background-color: white;
-  padding: 5px 5px 5px 5px;
-  overflow: auto;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: /*#85C1E9*/white;
+  color: white;
+  text-align: center;
+  height: 5%;
+  border-top: 1px solid black;
 }
 
-#popupclose {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  color: white;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 600;
-  background-color: black;
-  border: solid #222 2px;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 6px 12px;
-  cursor: pointer;
-  position: relative;
-  vertical-align: middle;
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
   text-decoration: none;
-  box-sizing: border-box;
-  font-family: "Roboto"
+  cursor: pointer;
+}
+
+#myBtn {
+  background-color: white;
+  padding: 10px 5px 10px 5px;
+  border-style: none;
+}
+
+#myBtn:hover {
+  background-color: #ECF0F1;
+  padding: 10px 5px 10px 5px;
+  border-style: none;
 }
