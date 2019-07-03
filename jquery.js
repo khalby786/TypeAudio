@@ -10597,8 +10597,7 @@ if ( !noGlobal ) {
 
 return jQuery;
 } );
-/*jQuery ends*/
-
+/*jQu*/
 
 $(document).ready(function() {
   $('#jBold').click(function() {
