@@ -1,6 +1,6 @@
-# Welcome To TransKribe
+# Welcome To TypeAudio
 
-TransKribe is a spin-off of the oTranscribe website, which is used for transcribing videos and audios. 
+TypeAudio is a spin-off of the oTranscribe website, which is used for transcribing videos and audios. 
 
 Load a file from the computer and start transcribing.
 
@@ -12,7 +12,7 @@ Load a file from the computer and start transcribing.
 
 And many other text editing tools.
 
-Visit at http://www.transkribe.glitch.me
+Visit at http://www.typeaudio.glitch.me
 
 Visit original version made by Eliot Bentely, at https://www.otranscribe.com
 
