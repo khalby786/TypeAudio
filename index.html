@@ -1,19 +1,24 @@
 
 <html>
   <head>
-    <title>TransKribe</title>
+    <title>TypeAudio</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/scss" href="export.scss">
+    <meta name="description" content="Transribe audio files.">
+    <meta name="keywords" content="transcribe, transcribing, free, online, khaleel, gibran, audiofiles, audio, typeaudio, TypeAudio">
+    <meta name="author" content="Khaleel Gibran">
+    <meta name="google-site-verification" content="7rh8yEjrv93O6eXvxVl-v6TZiuZ0mn2M6tdq7hAq1W4" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
   </head>
-  <body>
+  <body onload="setTimeout(doit, 5000)">
     <header>
       <div align = "center">
-        <input type="file" id="rll" /><br><br>
+        <br>
         <audio preload = "auto" id="rllly" controls>
           <source src="" id="rlly" />
         </audio>
         <div class="progressbar"></div>
         <h5 id = "time"></h5>
-        <div id = "wc"></div><br>
         <div id = "textformat">
           <button class = "textformatstyles" id="jBold"><b>B</b></button>
           <button class = "textformatstyles" id= "jItalic"><i>I</i></button>
@@ -28,53 +33,237 @@
     </header>
     <div id = "control">
       <button id = "button1" onclick = "playPause()">|| ESC</button><br><br>
-      <button id = "button2" onclick = "playPause()">&#9658; ESC</button><br><br>
-      <button id = "button3" onclick = "rewindAudio()">&#9194; F1</button><br><br>
-      <button id = "button4" onclick = "fastAudio()">&#9193; F2</button><br><br>
-      <button id = "button5" onclick = "insertTimestamp()">&#128339; F3</button><br><br>
+      <button id = "button2" onclick = "playPause()">&#9658 ESC</button><br><br>
+      <button id = "button3" onclick = "rewindAudio()">&#9194 F1</button><br><br>
+      <button id = "button4" onclick = "fastAudio()">&#9193 F2</button><br><br>
+      <button id = "button5" onclick = "insertTimestamp()">&#128339 F3</button><br><br>
     </div>
-    <div id = "about">
-      
-        <b>Read This First:</b><br><br>
-      
-      
-        TransKribe is an online software used for transcribing audios.<br>
-        It is a remix of oTranscribe.<br><br>
-        Controls:<br><br>
-          <ul>
-            
-      
-          <li>ESC key for pause and play.</li><br>
-          <li>F1 key to rewind.</li><br>
-          <li>F2 key to fast-forward.</li><br>
-          <li>F3 to insert timestamps.</li><br>
-          <li>Text is saved automaically to the browser's storage.</li><br>
-          </ul>
-          <button id = "popupclose" onclick = "close()">
-            Okay!
-      </button>
-    </div>
-
     <div id = "textbox" contenteditable = "true">
     </div>
+    <div id = "bottombar">
+      <b><div id = "wc"><b></b></div></b>
+      <button id="myBtn" class = "bottombtn"><b>LOAD AUDIO</b></button>
+      <button class="bottombtn" onclick="printf()"><b>PRINT</b></button>
+      <button id="cmd" class="bottombtn"><b>EXPORT PDF</b></button>
+      <button id="btn-export" class="bottombtn" onclick="exportHTML()"><b>EXPORT AS DOC</b></button>
+      <button class="bottombtn" onclick="downloadInnerHtml()"><b>EXPORT AS .TXT</b></button>
+    </div>
+    
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>
+          Load audio file from computer.
+        </h2>
+        <input type="file" id="rll" />
+      </div>
+
+    </div>
+    
+    <div class="preloader"><center>
+      <h1>Type<span id="audioloader">Audio</span>.</h1>
+      <h4>LOADING...</h4>
+      <div class="loader"></div></center>
+    </div>
+    
+    <div id="editor"></div>
+    
+    <!--<div class="menu">
+      
+        <p class="menu-option">Load Audio</p>
+        <p class="menu-option">Play</p>
+        <p class="menu-option">Pause</p>
+        <p class="menu-option">Fast-Forward</p>
+        <p class="menu-option">Rewind</p>
+      
+    </div>-->
     <!--<script src = "script.js"></script>-->
     <script src="jquery.js"></script>
     <script src="progressor.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="mousetrap.min.js"></script>
     <script src= "script.js"></script>
-    <script>
-      function close() {
-        var popup = document.getElementById('popupclose');
-        popup.style.display = "none";
+    <script src ="jquery.js"></script>
+    <script> 
+      function downloadInnerHtml(filename, e, mimeType) {
+       var elHtml = document.getElementById('textbox').textContent;
+       var link = document.createElement('a');
+       mimeType = mimeType || 'text/plain';
+
+       link.setAttribute('download', filename);
+       link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(elHtml));
+       link.click(); 
       }
+
+      var fileName =  'tags.txt';
+      $('#downloadLink').click(function(){
+       downloadInnerHtml(fileName, 'main','text/html');
+      });
+      
+      function exportHTML(){
+       var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+            "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+            "xmlns='http://www.w3.org/TR/REC-html40'>"+
+            "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+       var footer = "</body></html>";
+       var sourceHTML = header+document.getElementById("textbox").innerHTML+footer;
+       
+       var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+       var fileDownload = document.createElement("a");
+       document.body.appendChild(fileDownload);
+       fileDownload.href = source;
+       fileDownload.download = 'document.docx';
+       fileDownload.click();
+       document.body.removeChild(fileDownload);
+      }
+      
+      function doit() {
+        var preloaderdiv = document.getElementsByClassName('preloader')[0];
+        preloaderdiv.style.display = "none";
+        
+        
+        /*$(window).load(function() {
+         $('.preloader').fadeOut('slow');
+        });*/
+      }
+      function printf() {
+        var prtContent = document.getElementById("textbox");
+        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+      }
+      
+      
+      
+      var modal = document.getElementById("myModal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("myBtn");
+      
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+      
+      // When the user clicks on the button, open the modal 
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+      
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+      
+      function rewindAudio() {
+// Check for audio element support.
+	if (window.HTMLAudioElement) {
+		try {
+			var oAudio = document.getElementById('rllly');
+			oAudio.currentTime -= 3.0;
+		}
+		catch (e) {
+			// Fail silently but show in F12 developer tools console
+			if(window.console && console.error("Error:" + e));
+		}
+	}
+}
+
+function fastAudio() {
+// Check for audio element support.
+	if (window.HTMLAudioElement) {
+		try {
+			var oAudio = document.getElementById('rllly');
+			oAudio.currentTime += 3.0;
+		}
+		catch (e) {
+			// Fail silently but show in F12 developer tools console
+			if(window.console && console.error("Error:" + e));
+		}
+	}
+
+}
+/*Thank you, Eliot Bentley*/
+function playPause() {
+	
+		var oAudio = document.getElementById('rllly');
+		if (oAudio.paused) {
+			oAudio.play();
+		} else {
+			oAudio.pause();
+		}
+	}
+
+
+  // get timestamp
+// var timestamp;
+function getTimestamp(){
+    console.log("Suprise")
+    // get timestap
+    var time = document.getElementById('rllly').currentTime  
+    var minutes = Math.floor(time / 60);
+    var seconds = ("0" + Math.round( time - minutes * 60 ) ).slice(-2);
+    return minutes+":"+seconds;
+};
+
+function insertTimestamp(){
+    document.execCommand('insertHTML',false,
+    '<span class="timestamp" contenteditable="false" data="hi" onclick="var x = this; setFromTimestamp(\'' + getTimestamp() + '\', x);">' + getTimestamp() + '</span>&nbsp;'
+    );
+    $('.timestamp').each(function( index ) {
+        $( this )[0].contentEditable = false;
+    });
+}
+  
+function timestamps() {
+    insertTimestamp();
+    return false;
+  }
+      
+ 
+
       
       var myProgressBar = new Progressor({
        media : document.getElementsByTagName('audio')[0],
        bar : document.getElementsByClassName('progressbar')[0],
        time: document.getElementById('time'),
+
        /*text: files[0].name,*/
      });
    </script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js" integrity="sha384-NaWTHo/8YCBYJ59830LTz/P4aQZK1sS0SneOgAvhsIl3zBu8r9RevNg5lHCHAuQ/" crossorigin="anonymous"></script>
+   <script>
+     var doc = new jsPDF();
+    var specialElementHandlers = {
+        '#editor': function (element, renderer) {
+            return true;
+        }
+    };
+
+   $('#cmd').click(function () {
+        doc.fromHTML($('#textbox').html(), 15, 15, {
+            'width': 170,
+                'elementHandlers': specialElementHandlers
+        });
+        doc.save('typeaudio.pdf');
+    });
+   </script>
+    <script src="export.js"></script>
+    <script src="webl10n.js"></script>
+    <script src="google-drive.js"></script>
+    <script src="clean-html.js"></script>
+    
   </body>
 </html>
 <!--https://codepen.io/dmack/pen/VLxpyv?editors=1111-->

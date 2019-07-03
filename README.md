@@ -17,3 +17,4 @@ Visit at http://www.typeaudio.glitch.me
 Visit original version made by Eliot Bentely, at https://www.otranscribe.com
 
 v1.0.1
+
