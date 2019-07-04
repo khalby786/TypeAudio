@@ -280,7 +280,7 @@ header {
   color: black;
   content: " WORD COUNT";
   font-size: 15px;
-  float: left;
+  float: left; 
   text-align: center;
   margin-left: 10%;
   margin-top: 5px;
@@ -298,7 +298,7 @@ header {
   background-color: /*#85C1E9*/white;
   color: white;
   text-align: center;
-  height: 5%;
+  height: 3.5%;
   border-top: 1px solid black;
 }
 
