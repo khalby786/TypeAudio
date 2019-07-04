@@ -2,15 +2,15 @@
 <html>
   <head>
     <title>TypeAudio</title>
+    <link rel="icon"  type="image/png" href="https://cdn.glitch.com/f24aaa89-a083-477a-8553-68ad2d194adf%2FCopy%20of%20ovember%202019.png?v=1562222903630">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/scss" href="export.scss">
     <meta name="description" content="Transribe audio files.">
     <meta name="keywords" content="transcribe, transcribing, free, online, khaleel, gibran, audiofiles, audio, typeaudio, TypeAudio">
     <meta name="author" content="Khaleel Gibran">
     <meta name="google-site-verification" content="7rh8yEjrv93O6eXvxVl-v6TZiuZ0mn2M6tdq7hAq1W4" />
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
   </head>
-  <body onload="setTimeout(doit, 5000)">
+  <body>
     <header>
       <div align = "center">
         <br>
@@ -45,7 +45,7 @@
       <button id="myBtn" class = "bottombtn"><b>LOAD AUDIO</b></button>
       <button class="bottombtn" onclick="printf()"><b>PRINT</b></button>
       <button id="cmd" class="bottombtn"><b>EXPORT PDF</b></button>
-      <button id="btn-export" class="bottombtn" onclick="exportHTML()"><b>EXPORT AS DOC</b></button>
+      <button id="btn-export" class="bottombtn" onclick="Export2Doc('textbox')"><b>EXPORT AS DOC</b></button>
       <button class="bottombtn" onclick="downloadInnerHtml()"><b>EXPORT AS .TXT</b></button>
     </div>
     
@@ -64,12 +64,6 @@
 
     </div>
     
-    <div class="preloader"><center>
-      <h1>Type<span id="audioloader">Audio</span>.</h1>
-      <h4>LOADING...</h4>
-      <div class="loader"></div></center>
-    </div>
-    
     <div id="editor"></div>
     
     <!--<div class="menu">
@@ -84,10 +78,58 @@
     <!--<script src = "script.js"></script>-->
     <script src="jquery.js"></script>
     <script src="progressor.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="mousetrap.min.js"></script>
+    <script src="pace.js"></script>
     <script src= "script.js"></script>
     <script src ="jquery.js"></script>
     <script> 
+      $(document).ready(function() {
+        $('#jBold').click(function() {
+          document.execCommand('bold');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jItalic').click(function() {
+          document.execCommand('italic');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jUnder').click(function() {
+          document.execCommand('underline');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jCut').click(function() {
+          document.execCommand('cut');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jLess').click(function() {
+          document.execCommand('decreaseFontSize');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jMore').click(function() {
+          document.execCommand('increaseFontSize');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jUndo').click(function() {
+          document.execCommand('undo');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jRedo').click(function() {
+          document.execCommand('redo');
+        });
+      });
+      
       function downloadInnerHtml(filename, e, mimeType) {
        var elHtml = document.getElementById('textbox').textContent;
        var link = document.createElement('a');
@@ -103,32 +145,42 @@
        downloadInnerHtml(fileName, 'main','text/html');
       });
       
-      function exportHTML(){
-       var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
-            "xmlns:w='urn:schemas-microsoft-com:office:word' "+
-            "xmlns='http://www.w3.org/TR/REC-html40'>"+
-            "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
-       var footer = "</body></html>";
-       var sourceHTML = header+document.getElementById("textbox").innerHTML+footer;
-       
-       var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
-       var fileDownload = document.createElement("a");
-       document.body.appendChild(fileDownload);
-       fileDownload.href = source;
-       fileDownload.download = 'document.docx';
-       fileDownload.click();
-       document.body.removeChild(fileDownload);
+      function Export2Doc(element, filename = ''){
+      var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+      var postHtml = "</body></html>";
+      var html = preHtml+document.getElementById(element).innerHTML+postHtml;
+  
+      var blob = new Blob(['\ufeff', html], {
+          type: 'application/msword'
+      });
+      
+      // Specify link url
+      var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+      
+      // Specify file name
+      filename = filename?filename+'.doc':'document.doc';
+    
+      // Create download link element
+      var downloadLink = document.createElement("a");
+
+      document.body.appendChild(downloadLink);
+    
+      if(navigator.msSaveOrOpenBlob ){
+          navigator.msSaveOrOpenBlob(blob, filename);
+      }else{
+          // Create a link to the file
+          downloadLink.href = url;
+          
+          // Setting the file name
+          downloadLink.download = filename;
+          
+          //triggering the function
+          downloadLink.click();
       }
       
-      function doit() {
-        var preloaderdiv = document.getElementsByClassName('preloader')[0];
-        preloaderdiv.style.display = "none";
-        
-        
-        /*$(window).load(function() {
-         $('.preloader').fadeOut('slow');
-        });*/
-      }
+      document.body.removeChild(downloadLink);
+}
+      
       function printf() {
         var prtContent = document.getElementById("textbox");
         var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
@@ -167,33 +219,33 @@
       }
       
       function rewindAudio() {
-// Check for audio element support.
-	if (window.HTMLAudioElement) {
-		try {
-			var oAudio = document.getElementById('rllly');
-			oAudio.currentTime -= 3.0;
-		}
-		catch (e) {
-			// Fail silently but show in F12 developer tools console
-			if(window.console && console.error("Error:" + e));
-		}
-	}
-}
+       // Check for audio element support.
+	     if (window.HTMLAudioElement) {
+		    try {
+			   var oAudio = document.getElementById('rllly');
+			   oAudio.currentTime -= 3.0;
+		    }
+		    catch (e) {
+			   // Fail silently but show in F12 developer tools console
+			  if(window.console && console.error("Error:" + e));
+		    }  
+	     }
+      }
 
-function fastAudio() {
-// Check for audio element support.
-	if (window.HTMLAudioElement) {
-		try {
-			var oAudio = document.getElementById('rllly');
-			oAudio.currentTime += 3.0;
-		}
-		catch (e) {
-			// Fail silently but show in F12 developer tools console
-			if(window.console && console.error("Error:" + e));
-		}
-	}
+      function fastAudio() {
+        // Check for audio element support.
+	      if (window.HTMLAudioElement) {
+		     try {
+			     var oAudio = document.getElementById('rllly');
+			     oAudio.currentTime += 3.0;
+		     }
+		     catch (e) {
+			     // Fail silently but show in F12 developer tools console
+		       if(window.console && console.error("Error:" + e));
+		     }
+	      }
 
-}
+       }
 /*Thank you, Eliot Bentley*/
 function playPause() {
 	
@@ -259,11 +311,6 @@ function timestamps() {
         doc.save('typeaudio.pdf');
     });
    </script>
-    <script src="export.js"></script>
-    <script src="webl10n.js"></script>
-    <script src="google-drive.js"></script>
-    <script src="clean-html.js"></script>
-    
   </body>
 </html>
 <!--https://codepen.io/dmack/pen/VLxpyv?editors=1111-->

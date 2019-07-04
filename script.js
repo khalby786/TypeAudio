@@ -200,4 +200,3 @@ function setFromTimestamp(clickts, element){
         document.getElementById('rllly').currentTime = splitTimestamp(clickts);
     }
 }
-
