@@ -84,7 +84,37 @@ button {
   text-align: center;
 }
 
-#button1 {
+.button {
+  padding: 3px 15px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: black;
+  background-color: white;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 4px 6px #999;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 14px;
+  position: relative;
+  font-family: "Roboto", "Helvetica", sans-serif;
+}
+
+.button:hover {
+	background-color: #FFFAFA;
+  box-shadow: 4px 5px #999;
+  transform: translateY(1px)
+}
+
+.button:active {
+  background-color: #FFFAFA;
+  box-shadow: 4px 2px #999;
+  transform: translateY(3px);
+}
+
+/*#button1 {
   padding-top: 5px;
   padding-bottom: 5px;
   color: #222;
@@ -184,7 +214,7 @@ button {
   font-family: "Roboto"
 }
 
-/*body {
+body {
   background-color: yellow;
   -webkit-animation-name: changeColor; 
   -webkit-animation-duration: 6s; 
@@ -235,14 +265,18 @@ audio {
   display: none;
 }
 
-header {
-  margin-left: -10px;
-  width: 100%;
-  top: 0px;
+#header {
+  width: 98%;
+  top: 10px;
+  left: 10px;
   background-color: /*#AED6F1#85C1E9*/white;
   position: fixed;
   color: black;
   border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-radius: 9px;
 }
 
 #time {
@@ -252,29 +286,40 @@ header {
 
 #control {
   position: fixed;
-  right: 10px;
+  right: 20px;
   margin-top: 10px;
 }
 
 .textformatstyles {
+  padding: 3px 15px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: black;
+  background-color: #F0FFFF;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 4px 6px #999;
   padding-top: 5px;
   padding-bottom: 5px;
-  color: black;
   font-size: 14px;
-  line-height: 14px;
-  font-weight: 600;
-  background-color: #fff;
-  border: solid #222 2px;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 6px 12px;
-  cursor: pointer;
   position: relative;
-  vertical-align: middle;
-  text-decoration: none;
-  box-sizing: border-box;
-  font-family: "Roboto";
+  font-family: "Roboto", "Helvetica", sans-serif;
 }
+
+.textformatstyles:hover {
+	background-color: #FFFAFA;
+  box-shadow: 4px 5px #999;
+  transform: translateY(1px)
+}
+
+.textformatstyles:active {
+  background-color: #FFFAFA;
+  box-shadow: 4px 2px #999;
+  transform: translateY(3px);
+}
+
 
 #wc {
   color: black;
@@ -288,18 +333,6 @@ header {
 
 .timestamp {
   color: blue;
-}
-
-#bottombar {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: /*#85C1E9*/white;
-  color: white;
-  text-align: center;
-  height: 3.5%;
-  border-top: 1px solid black;
 }
 
 .modal {
@@ -340,26 +373,32 @@ header {
 }
 
 .bottombtn {
-  background-color: white;
-  padding: 10px 5px 10px 5px;
-  border-style: none;
-
-  border-right: 1px solid black;
-  border-bottom: none;
-  left;
-  left: 0;
+  padding: 3px 10px;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: black;
+  background-color: #F0FFFF;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 4px 5px #999;
+  position: relative;
+  font-family: "Roboto", "Helvetica", sans-serif;
 }
 
 .bottombtn:hover {
-  background-color: #ECF0F1;
-  padding: 10px 5px 10px 5px;
-  border-style: none;
-  
-  border-right: 1px solid black;
-  border-bottom: none;
-  left: 0;
-  
+	background-color: #FFFAFA;
+  box-shadow: 4px 4px #999;
+  transform: translateY(1px)
 }
+
+.bottombtn:active {
+  background-color: #FFFAFA;
+  box-shadow: 4px 1px #999;
+  transform: translateY(3px);
+}
+
 
 .pace {
   -webkit-pointer-events: none;
@@ -559,3 +598,34 @@ header {
   display: none;
 }
 
+.more {
+  position: fixed;
+  bottom: 10;
+  margin-left: 10px;
+  background-color: white;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 5px;
+}
+
+#morecontent {
+  width: 300px;
+  height: -webkit-fit-content;
+  left: 10;
+  bottom: 70;
+  position: fixed;
+  background-color: white;
+  padding: 24px 20px 24px 20px;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 5px;
+  display: none;
+}
+
+#morecontenttitle {
+  font-size: 50px;
+}

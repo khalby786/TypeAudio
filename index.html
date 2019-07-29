@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
   </head>
   <body>
-    <header>
+    <header id = "header">
       <div align = "center">
         <br>
         <audio preload = "auto" id="rllly" controls>
@@ -32,24 +32,42 @@
        </div>
     </header>
     <div id = "control">
-      <button id = "button1" onclick = "playPause()">|| ESC</button><br><br>
-      <button id = "button2" onclick = "playPause()">&#9658; ESC</button><br><br>
-      <button id = "button3" onclick = "rewindAudio()">&#9194; F1</button><br><br>
-      <button id = "button4" onclick = "fastAudio()">&#9193; F2</button><br><br>
-      <button id = "button5" onclick = "insertTimestamp()">&#128339; F3</button><br><br>
+
+      <button class = "button" onclick = "playPause()">||</button><br><br>
+      <button class = "button" onclick = "playPause()">&#9658;</button><br><br>
+      <button class = "button" onclick = "rewindAudio()">&#9194;</button><br><br>
+      <button class = "button" onclick = "fastAudio()">&#9193;</button><br><br>
+      <button class = "button" onclick = "insertTimestamp()">&#128339;</button><br><br>
+
     </div>
     <div id = "textbox" contenteditable = "true">
     </div>
-    <div id = "bottombar">
-      <b><div id = "wc"><b></b></div></b>
+    <!--<div id = "bottombar">
+      
       <button id="myBtn" class = "bottombtn"><b>LOAD AUDIO</b></button>
       <button class="bottombtn" onclick="printf()"><b>PRINT</b></button>
       <button id="cmd" class="bottombtn"><b>EXPORT PDF</b></button>
       <button id="btn-export" class="bottombtn" onclick="Export2Doc('textbox')"><b>EXPORT AS DOC</b></button>
       <button class="bottombtn" onclick="downloadInnerHtml()"><b>EXPORT AS .TXT</b></button>
+    </div>-->
+    <button class = "more" onclick = "showmorecontent()">
+      More!
+    </button>
+    <!--<button class = "more">
+      <b><div id = "wc"><b></b></div></b>
+    </button>-->
+    <div id = "morecontent">
+      <b><span id = "morecontenttitle">
+        Tools.
+        </span></b>
+      
+      <button id="myBtn" class = "bottombtn"><b>LOAD AUDIO</b></button>
+      <button class="bottombtn" onclick="printf()"><b>PRINT</b></button>
+      EXPORT:<br><br><button id="cmd" class="bottombtn"><b>EXPORT PDF</b></button><br>
+      <button id="btn-export" class="bottombtn" onclick="Export2Doc('textbox')"><b>EXPORT AS DOC</b></button><br>
+      <button class="bottombtn" onclick="downloadInnerHtml()"><b>EXPORT AS .TXT</b></button>
     </div>
     
-
     <!-- The Modal -->
     <div id="myModal" class="modal">
 
@@ -284,6 +302,17 @@ function timestamps() {
   }
       
  
+function showmorecontent() {
+  var popupEl = document.getElementById('morecontent');
+  popupEl.style.display = "block";
+}
+
+var popupEl = document.getElementById('morecontent');      
+window.onclick = function(event) {
+  if (event.target == popupEl) {
+    popupEl.style.display = "none";
+  }
+}
 
       
       var myProgressBar = new Progressor({

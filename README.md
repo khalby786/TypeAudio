@@ -1,4 +1,5 @@
 # Welcome To TypeAudio
+<hr>
 
 ### TypeAudio is a website for transcribing videos and audios.
 Load files from computer and start transcribing!
@@ -11,4 +12,6 @@ Load files from computer and start transcribing!
 
 Print and export text as PDF, .TXT or Word Document.
 
-Visit site at http://www.typeaudio.glitch.me
+
+Visit site at [http://www.typeaudio.glitch.me](http://www.typeaudio.glitch.me)
+
