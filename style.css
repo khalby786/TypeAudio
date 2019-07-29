@@ -323,9 +323,9 @@ audio {
 
 #wc {
   color: black;
-  content: " words";
+  content: " WORD COUNT";
   font-size: 15px;
-  float: left;
+  float: left; 
   text-align: center;
   margin-left: 10%;
   margin-top: 5px;

@@ -12,4 +12,6 @@ Load files from computer and start transcribing!
 
 Print and export text as PDF, .TXT or Word Document.
 
+
 Visit site at [http://www.typeaudio.glitch.me](http://www.typeaudio.glitch.me)
+
