@@ -10599,50 +10599,401 @@ return jQuery;
 } );
 /*jQu*/
 
-$(document).ready(function() {
-  $('#jBold').click(function() {
-    document.execCommand('bold');
-  });
-});
+//A JS LIBRARY
 
-$(document).ready(function() {
-  $('#jItalic').click(function() {
-    document.execCommand('italic');
-  });
-});
+     /*Please!*/
+     
+    /*! otinput v1.0.0 */
+    (function(){
+    'use strict';
+    oTinput.prototype.getSupportedFormats = function(){
+        var potentialFormatsAudio = ['mp3', 'ogg', 'webm', 'wav'];
+        var potentialFormatsVideo = ['mp4', 'ogg', 'webm'];
+        var isFormatSupported = this.isFormatSupported || oTinput.isFormatSupported;
+        var audio = $.map( potentialFormatsAudio, function( format, i ) {
+            if (isFormatSupported(format)){
+                return format;
+            }
+        });
+        var video = $.map( potentialFormatsVideo, function( format, i ) {
+            if (isFormatSupported(format)){
+                return format;
+            }
+        });
+        return {
+            audio: audio,
+            video: video
+        };
+    };
+    oTinput.prototype.isFormatSupported = function( format ){
+        var a;
+        if (typeof format !== 'string') {
+            var fileType = format.type.split("/")[0];
+            a = document.createElement(fileType);
+            return !!(a.canPlayType && a.canPlayType(format.type).replace(/no/, ''));
+        }
+        a = document.createElement('audio');
+        return !!(a.canPlayType && a.canPlayType('audio/'+format+';').replace(/no/, ''));
+    };
+    oTinput.getSupportedFormats = oTinput.prototype.getSupportedFormats;
+    oTinput.isFormatSupported = oTinput.prototype.isFormatSupported;
 
-$(document).ready(function() {
-  $('#jUnder').click(function() {
-    document.execCommand('underline');
-  });
-});
+    oTinput.prototype.parseYoutubeURL = function(url){
+        if (url.match) {
+            var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            var match = url.match(regExp);
+            if (match&&match[2].length===11){
+                return match[2];
+            }
+        }
+        return false;
+    };
+    oTinput.parseYoutubeURL = oTinput.prototype.parseYoutubeURL;
 
-$(document).ready(function() {
-  $('#jCut').click(function() {
-    document.execCommand('cut');
-  });
-});
+    function oTinput(config){
+        var that = this;
+        this._text = config.text || {};
+        this._onFileChange = config.onFileChange || function(){};
+        this._onFileError = config.onFileError || function(){};
+        this._onURLSubmit = config.onURLSubmit || function(){};
+        this._onURLError = config.onURLError || function(){};
+        this._dragover = config.onDragover || function(){};
+        this._dragleave = config.onDragleave || function(){};
+        this.element = this._setupElement(config.element);
+        this._setupMouseEvents();
 
-$(document).ready(function() {
-  $('#jLess').click(function() {
-    document.execCommand('decreaseFontSize');
-  });
-});
+        $(this.element).find('input[type="file"]').change(function(){
+            that._reactToFile(this);
+        });
+        $(this.element).find('.ext-input-field input').on('submit',function(){
+            that._reactToURL( $(this).val() );
+        }).keypress(function(e){
+            if (e.which === 13) {
+                that._reactToURL( $(this).val() );
+                return false;
+            }
+        });    
+    }
+    window.oTinput = oTinput;
+    oTinput.prototype._setupElement = function(element){
+        var that = this;
+        if (typeof element === 'undefined') {
+            throw('must specify container element');
+        }
+        var buttonText = this._text.button || 'Choose audio (or video) file';
+        var button = '<button class="btn-file-input" style="width: 100%;">'+buttonText+'</button>';
+        var fileInputStyle = [
+            'position: absolute',
+            'top: 0',
+            'left: 0',
+            'opacity: 0',
+            'width: 100%'
+        ].join(';');
+        var fileInput = '<input type="file" accept="audio/*, video/*" style="'+fileInputStyle+'">';
+        var wrapperStyle = 'position: relative; overflow: hidden;';
+        var wrapper = '<div class="file-input-wrapper" style="'+wrapperStyle+'">'+button+fileInput+'</div>';
+        var altButtonText = this._text.altButton || 'Enter file URL';
+        var altButton = '<button class="alt-input-button">'+altButtonText+'</button>';
+        var urlInputText = this._text.altInputText || 'Enter URL of audio or video file:';
+        var urlInputClose = this._text.closeAlt || 'close';
+        var urlInput = '<div class="ext-input-field" style="display: none;"><div class="close-ext-input">'+urlInputClose+'</div><label>'+urlInputText+'<input type="text"></label><div class="ext-input-warning"></div></div>';
+        $(element).html( wrapper + altButton + urlInput ); 
+        return $(element)[0];
+    };
+    oTinput.prototype._setupMouseEvents = function(){
+        var that = this;
+        var element = this.element;
+        var buttonEl = $(element).find('.file-input-wrapper')[0];
+        buttonEl.addEventListener('dragover', function(){
+            that._dragover();
+        }, false);
+        buttonEl.addEventListener('dragleave', function(){
+            that._dragleave();
+        }, false);
+        $(element).find('.alt-input-button').click(function(){
+            that.showURLInput();
+        });    
+        $(element).find('.close-ext-input').click(function(){
+            that.showFileInput();
+        });
+    };
+    oTinput.prototype._reactToFile = function(input){
+        var file = input.files[0];
+        if ( this.isFormatSupported(file) ) {
+            this._onFileChange( file );
+        } else {
+            var err = new Error('Filetype '+file.type+' not supported by this browser');
+            this._onFileError(err, file);
+        }
+    };
+    oTinput.prototype._reactToURL = function(url){
+        var input = url.replace(/\s/g,'');
+        if (this.parseYoutubeURL(input)){
+            return this._onURLSubmit( input );
+        }
+        var formatArr = input.split('.');
+        var format = formatArr[formatArr.length-1];
+        if ( this.isFormatSupported(format) ) {
+            this._onURLSubmit( input );
+        } else {
+            var err = new Error('Filetype '+format+' not supported by this browser');
+            this._onURLError(err, url);
+        }
+    };
+    oTinput.prototype.showURLInput = function(){
+        $(this.element).find('.ext-input-field').show().find('input').focus();
+        $(this.element).addClass('ext-input-active');
+    };
+    oTinput.prototype.showFileInput = function(){
+        $(this.element).find('.ext-input-field').hide();
+        $(this.element).removeClass('ext-input-active');
+    };
 
-$(document).ready(function() {
-  $('#jMore').click(function() {
-    document.execCommand('increaseFontSize');
-  });
-});
+    }());
+     
+    var input = new oTinput({
+      element: '#otinput',
+      onFileChange: function(file){
+        console.log('File name is: '+file.name);
+        var audiofile = document.getElementsByTagName('audio')[0];
+        audiofile.src = url;
+      },
+      onURLSubmit: function(url){
+        console.log('URL is: '+url);
+        var bar = document.getElementsByClassName('progressor')[0];
+        var audiofile = document.getElementsByTagName('audio')[0];
+        audiofile.src = url;
+      }
+    });
+//END 
 
-$(document).ready(function() {
-  $('#jUndo').click(function() {
-    document.execCommand('undo');
-  });
-});
+      
+      function verybigyoutube() {
+        var linkenter = document.getElementById('youtubeLoad');
+        linkenter.style.display = "block";
+      }
+      
+      function loadyoutube() {
+        var getText = document.getElementById('lastid').value;
+        var linkenter = document.getElementById('youtubeLoad');
+        linkenter.style.display = "none";
+        var youtube = document.getElementById('youtube');
+        getTextNew = "https://www.youtube.com/embed/" + getText;
+        youtube.src = getTextNew;
+      }
+      
+      $(document).ready(function() {
+        $('#jBold').click(function() {
+          document.execCommand('bold');
+        });
+      });
 
-$(document).ready(function() {
-  $('#jRedo').click(function() {
-    document.execCommand('redo');
-  });
-});
+      $(document).ready(function() {
+        $('#jItalic').click(function() {
+          document.execCommand('italic');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jUnder').click(function() {
+          document.execCommand('underline');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jCut').click(function() {
+          document.execCommand('cut');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jLess').click(function() {
+          document.execCommand('decreaseFontSize');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jMore').click(function() {
+          document.execCommand('increaseFontSize');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jUndo').click(function() {
+          document.execCommand('undo');
+        });
+      });
+
+      $(document).ready(function() {
+        $('#jRedo').click(function() {
+          document.execCommand('redo');
+        });
+      });
+      
+      function downloadInnerHtml(filename, e, mimeType) {
+       var elHtml = document.getElementById('textbox').textContent;
+       var link = document.createElement('a');
+       mimeType = mimeType || 'text/plain';
+
+       link.setAttribute('download', filename);
+       link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(elHtml));
+       link.click(); 
+      }
+
+      var fileName =  'tags.txt';
+      $('#downloadLink').click(function(){
+       downloadInnerHtml(fileName, 'main','text/html');
+      });
+      
+      function Export2Doc(element, filename = ''){
+      var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
+      var postHtml = "</body></html>";
+      var html = preHtml+document.getElementById(element).innerHTML+postHtml;
+  
+      var blob = new Blob(['\ufeff', html], {
+          type: 'application/msword'
+      });
+      
+      // Specify link url
+      var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
+      
+      // Specify file name
+      filename = filename?filename+'.doc':'document.doc';
+    
+      // Create download link element
+      var downloadLink = document.createElement("a");
+
+      document.body.appendChild(downloadLink);
+    
+      if(navigator.msSaveOrOpenBlob ){
+          navigator.msSaveOrOpenBlob(blob, filename);
+      }else{
+          // Create a link to the file
+          downloadLink.href = url;
+          
+          // Setting the file name
+          downloadLink.download = filename;
+          
+          //triggering the function
+          downloadLink.click();
+      }
+      
+      document.body.removeChild(downloadLink);
+}
+      
+      function printf() {
+        var prtContent = document.getElementById("textbox");
+        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.focus();
+        WinPrint.print();
+        WinPrint.close();
+      }
+      
+      function rewindAudio() {
+       // Check for audio element support.
+	     if (window.HTMLAudioElement) {
+		    try {
+			   var oAudio = document.getElementById('rllly');
+			   oAudio.currentTime -= 3.0;
+		    }
+		    catch (e) {
+			   // Fail silently but show in F12 developer tools console
+			  if(window.console && console.error("Error:" + e));
+		    }  
+	     }
+      }
+
+      function fastAudio() {
+        // Check for audio element support.
+	      if (window.HTMLAudioElement) {
+		     try {
+			     var oAudio = document.getElementById('rllly');
+			     oAudio.currentTime += 3.0;
+		     }
+		     catch (e) {
+			     // Fail silently but show in F12 developer tools console
+		       if(window.console && console.error("Error:" + e));
+		     }
+	      }
+
+       }
+/*Thank you, Eliot Bentley*/
+function playPause() {
+	
+		var oAudio = document.getElementById('rllly');
+		if (oAudio.paused) {
+			oAudio.play();
+		} else {
+			oAudio.pause();
+		}
+	}
+
+
+  // get timestamp
+// var timestamp;
+function getTimestamp(){
+    console.log("Suprise")
+    // get timestap
+    var time = document.getElementById('rllly').currentTime  
+    var minutes = Math.floor(time / 60);
+    var seconds = ("0" + Math.round( time - minutes * 60 ) ).slice(-2);
+    return minutes+":"+seconds;
+};
+
+function insertTimestamp(){
+    document.execCommand('insertHTML',false,
+    '<span class="timestamp" contenteditable="false" data="hi" onclick="var x = this; setFromTimestamp(\'' + getTimestamp() + '\', x);">' + getTimestamp() + '</span>&nbsp;'
+    );
+    $('.timestamp').each(function( index ) {
+        $( this )[0].contentEditable = false;
+    });
+}
+  
+function timestamps() {
+    insertTimestamp();
+    return false;
+  }
+      
+ 
+function showmorecontent() {
+  var popupEl = document.getElementById('morecontent');
+  popupEl.style.display = "block";
+}
+
+var all = document.getElementById('whole');   
+var popupEl = document.getElementById('morecontent');
+window.onclick = function(event) {
+  if (event.target == popupEl) {
+    popupEl.style.display = "none";
+  }
+}
+
+function essential() {
+  var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }
+  };
+  
+  if (isMobile.any()) {
+    var warning = document.getElementById('mobilewarning');
+    warning.style.display = "block";
+  }
+}
