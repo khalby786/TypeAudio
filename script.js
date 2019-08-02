@@ -62,12 +62,6 @@ function handleFiles(event) {
 
 }
   
-
-
-
-document.getElementById("rll").addEventListener("change", handleFiles, false);
-
-
 function rewindAudio() {
 // Check for audio element support.
 	if (window.HTMLAudioElement) {

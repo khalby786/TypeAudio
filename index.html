@@ -9,312 +9,91 @@
     <meta name="author" content="Khaleel Gibran">
     <meta name="google-site-verification" content="7rh8yEjrv93O6eXvxVl-v6TZiuZ0mn2M6tdq7hAq1W4" />
     <meta name="viewport" content="width=device-width, initial-scale=0.5">
-  </head>
-  <body>
-    <header id = "header">
-      <div align = "center">
-        <br>
-        <audio preload = "auto" id="rllly" controls>
-          <source src="" id="rlly" />
-        </audio>
-        <div class="progressbar"></div>
-        <h5 id = "time"></h5>
-        <div id = "textformat">
-          <button class = "textformatstyles" id="jBold"><b>B</b></button>
-          <button class = "textformatstyles" id= "jItalic"><i>I</i></button>
-          <button class = "textformatstyles" id= "jUnder"><u>U</u></button>
-          <button class = "textformatstyles" id= "jCut">Cut</button>
-          <button class = "textformatstyles" id= "jLess">&#8690;</button>
-          <button class = "textformatstyles" id= "jMore">&#8689;</button>
-          <button class = "textformatstyles" id= "jUndo">&olarr;</button>
-          <button class = "textformatstyles" id= "jRedo">&orarr;</button><br><br>
-        </div>
-       </div>
-    </header>
-    <div id = "control">
-
-      <button class = "button" onclick = "playPause()">||</button><br><br>
-      <button class = "button" onclick = "playPause()">&#9658;</button><br><br>
-      <button class = "button" onclick = "rewindAudio()">&#9194;</button><br><br>
-      <button class = "button" onclick = "fastAudio()">&#9193;</button><br><br>
-      <button class = "button" onclick = "insertTimestamp()">&#128339;</button><br><br>
-
-    </div>
-    <div id = "textbox" contenteditable = "true">
-    </div>
-    <!--<div id = "bottombar">
+    <style>
       
-      <button id="myBtn" class = "bottombtn"><b>LOAD AUDIO</b></button>
-      <button class="bottombtn" onclick="printf()"><b>PRINT</b></button>
-      <button id="cmd" class="bottombtn"><b>EXPORT PDF</b></button>
-      <button id="btn-export" class="bottombtn" onclick="Export2Doc('textbox')"><b>EXPORT AS DOC</b></button>
-      <button class="bottombtn" onclick="downloadInnerHtml()"><b>EXPORT AS .TXT</b></button>
-    </div>-->
+    </style>
+  </head>
+  <body onload = "essential()">
+    <div id = "whole">
+    
+      <header id = "header">
+        <div align = "center">
+          <br>
+          <audio preload = "auto" id="rllly" controls>
+            <source src="" id="rlly" />
+          </audio>
+          <div class="progressbar"></div>
+          <h5 id = "time"></h5>
+          <div id = "textformat">
+            <button class = "textformatstyles" id="jBold"><b>B</b></button>
+            <button class = "textformatstyles" id= "jItalic"><i>I</i></button>
+            <button class = "textformatstyles" id= "jUnder"><u>U</u></button>
+            <button class = "textformatstyles" id= "jCut">Cut</button>
+            <button class = "textformatstyles" id= "jLess">&#8690</button>
+            <button class = "textformatstyles" id= "jMore">&#8689</button>
+            <button class = "textformatstyles" id= "jUndo">&olarr;</button>
+            <button class = "textformatstyles" id= "jRedo">&orarr;</button><br><br>
+          </div>
+         </div>
+      </header>
+      <div id = "control">
+        <button class = "button" onclick = "playPause()">||</button><br><br>
+        <button class = "button" onclick = "playPause()">&#9658;</button><br><br>
+        <button class = "button" onclick = "rewindAudio()">&#9194;</button><br><br>
+        <button class = "button" onclick = "fastAudio()">&#9193;</button><br><br>
+        <button class = "button" onclick = "insertTimestamp()">&#128339;</button><br><br>
+        <a href = "https://www.typeaudio.glitch.me"><button class = "button">&#8634;</button><br><br></a>
+      </div>
+      <div id = "textbox" contenteditable = "true">
+      </div>
+
+      <div class = "my-input-holder">      
+      </div>
+
+      <iframe id = "youtube" width="200" src = "">
+
+      </iframe>
+      
+      <div id = "mobilewarning">
+        <br><br><br><br>Please switch to a mordern desktop browser as TypeAudio does not support mobile platforms.
+      </div>
+      
+    </div>
+    
     <button class = "more" onclick = "showmorecontent()">
       More!
     </button>
-    <!--<button class = "more">
+    <button class = "wc">
       <b><div id = "wc"><b></b></div></b>
-    </button>-->
+    </button>
     <div id = "morecontent">
       <b><span id = "morecontenttitle">
-        Tools.
+        Tools.<br>
         </span></b>
-      
-      <button id="myBtn" class = "bottombtn"><b>LOAD AUDIO</b></button>
       <button class="bottombtn" onclick="printf()"><b>PRINT</b></button>
-      EXPORT:<br><br><button id="cmd" class="bottombtn"><b>EXPORT PDF</b></button><br>
+      <br><br>EXPORT:<br><br><button id="cmd" class="bottombtn"><b>EXPORT PDF</b></button><br>
       <button id="btn-export" class="bottombtn" onclick="Export2Doc('textbox')"><b>EXPORT AS DOC</b></button><br>
       <button class="bottombtn" onclick="downloadInnerHtml()"><b>EXPORT AS .TXT</b></button>
-    </div>
-    
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>
-          Load audio file from computer.
-        </h2>
-        <input type="file" id="rll" />
-      </div>
-
+      <section id = "otinput"><br><br></section>
+      <button class = "bottombtn" onclick = "verybigyoutube()">LOAD YOUTUBE VIDEOS</button>
     </div>
     
     <div id="editor"></div>
     
-    <!--<div class="menu">
-      
-        <p class="menu-option">Load Audio</p>
-        <p class="menu-option">Play</p>
-        <p class="menu-option">Pause</p>
-        <p class="menu-option">Fast-Forward</p>
-        <p class="menu-option">Rewind</p>
-      
-    </div>-->
-    <!--<script src = "script.js"></script>-->
-    <script src="jquery.js"></script>
+    <div id = "youtubeLoad">
+      To load a YouTube file, simply copy the last random digits of the URL of the YouTube video and paste it here.<br><br>
+      <image src = "https://cdn.glitch.com/f24aaa89-a083-477a-8553-68ad2d194adf%2FCapture.JPG?v=1564675584420"></image><br>
+      <input type = "text" id = "lastid">
+      <button id = "getyoutubeurl" onclick = "loadyoutube()">
+        SUBMIT
+      </button>
+    </div>
+    
     <script src="progressor.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="pace.js"></script>
     <script src= "script.js"></script>
-    <script src ="jquery.js"></script>
-    <script> 
-      $(document).ready(function() {
-        $('#jBold').click(function() {
-          document.execCommand('bold');
-        });
-      });
-
-      $(document).ready(function() {
-        $('#jItalic').click(function() {
-          document.execCommand('italic');
-        });
-      });
-
-      $(document).ready(function() {
-        $('#jUnder').click(function() {
-          document.execCommand('underline');
-        });
-      });
-
-      $(document).ready(function() {
-        $('#jCut').click(function() {
-          document.execCommand('cut');
-        });
-      });
-
-      $(document).ready(function() {
-        $('#jLess').click(function() {
-          document.execCommand('decreaseFontSize');
-        });
-      });
-
-      $(document).ready(function() {
-        $('#jMore').click(function() {
-          document.execCommand('increaseFontSize');
-        });
-      });
-
-      $(document).ready(function() {
-        $('#jUndo').click(function() {
-          document.execCommand('undo');
-        });
-      });
-
-      $(document).ready(function() {
-        $('#jRedo').click(function() {
-          document.execCommand('redo');
-        });
-      });
-      
-      function downloadInnerHtml(filename, e, mimeType) {
-       var elHtml = document.getElementById('textbox').textContent;
-       var link = document.createElement('a');
-       mimeType = mimeType || 'text/plain';
-
-       link.setAttribute('download', filename);
-       link.setAttribute('href', 'data:' + mimeType  +  ';charset=utf-8,' + encodeURIComponent(elHtml));
-       link.click(); 
-      }
-
-      var fileName =  'tags.txt';
-      $('#downloadLink').click(function(){
-       downloadInnerHtml(fileName, 'main','text/html');
-      });
-      
-      function Export2Doc(element, filename = ''){
-      var preHtml = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><meta charset='utf-8'><title>Export HTML To Doc</title></head><body>";
-      var postHtml = "</body></html>";
-      var html = preHtml+document.getElementById(element).innerHTML+postHtml;
-  
-      var blob = new Blob(['\ufeff', html], {
-          type: 'application/msword'
-      });
-      
-      // Specify link url
-      var url = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(html);
-      
-      // Specify file name
-      filename = filename?filename+'.doc':'document.doc';
-    
-      // Create download link element
-      var downloadLink = document.createElement("a");
-
-      document.body.appendChild(downloadLink);
-    
-      if(navigator.msSaveOrOpenBlob ){
-          navigator.msSaveOrOpenBlob(blob, filename);
-      }else{
-          // Create a link to the file
-          downloadLink.href = url;
-          
-          // Setting the file name
-          downloadLink.download = filename;
-          
-          //triggering the function
-          downloadLink.click();
-      }
-      
-      document.body.removeChild(downloadLink);
-}
-      
-      function printf() {
-        var prtContent = document.getElementById("textbox");
-        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
-        WinPrint.document.write(prtContent.innerHTML);
-        WinPrint.document.close();
-        WinPrint.focus();
-        WinPrint.print();
-        WinPrint.close();
-      }
-      
-      
-      
-      var modal = document.getElementById("myModal");
-
-      // Get the button that opens the modal
-      var btn = document.getElementById("myBtn");
-      
-      // Get the <span> element that closes the modal
-      var span = document.getElementsByClassName("close")[0];
-      
-      // When the user clicks on the button, open the modal 
-      btn.onclick = function() {
-        modal.style.display = "block";
-      }
-      
-      // When the user clicks on <span> (x), close the modal
-      span.onclick = function() {
-        modal.style.display = "none";
-      }
-      
-      // When the user clicks anywhere outside of the modal, close it
-      window.onclick = function(event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
-        }
-      }
-      
-      function rewindAudio() {
-       // Check for audio element support.
-	     if (window.HTMLAudioElement) {
-		    try {
-			   var oAudio = document.getElementById('rllly');
-			   oAudio.currentTime -= 3.0;
-		    }
-		    catch (e) {
-			   // Fail silently but show in F12 developer tools console
-			  if(window.console && console.error("Error:" + e));
-		    }  
-	     }
-      }
-
-      function fastAudio() {
-        // Check for audio element support.
-	      if (window.HTMLAudioElement) {
-		     try {
-			     var oAudio = document.getElementById('rllly');
-			     oAudio.currentTime += 3.0;
-		     }
-		     catch (e) {
-			     // Fail silently but show in F12 developer tools console
-		       if(window.console && console.error("Error:" + e));
-		     }
-	      }
-
-       }
-/*Thank you, Eliot Bentley*/
-function playPause() {
-	
-		var oAudio = document.getElementById('rllly');
-		if (oAudio.paused) {
-			oAudio.play();
-		} else {
-			oAudio.pause();
-		}
-	}
-
-
-  // get timestamp
-// var timestamp;
-function getTimestamp(){
-    console.log("Suprise")
-    // get timestap
-    var time = document.getElementById('rllly').currentTime  
-    var minutes = Math.floor(time / 60);
-    var seconds = ("0" + Math.round( time - minutes * 60 ) ).slice(-2);
-    return minutes+":"+seconds;
-};
-
-function insertTimestamp(){
-    document.execCommand('insertHTML',false,
-    '<span class="timestamp" contenteditable="false" data="hi" onclick="var x = this; setFromTimestamp(\'' + getTimestamp() + '\', x);">' + getTimestamp() + '</span>&nbsp;'
-    );
-    $('.timestamp').each(function( index ) {
-        $( this )[0].contentEditable = false;
-    });
-}
-  
-function timestamps() {
-    insertTimestamp();
-    return false;
-  }
-      
- 
-function showmorecontent() {
-  var popupEl = document.getElementById('morecontent');
-  popupEl.style.display = "block";
-}
-
-var popupEl = document.getElementById('morecontent');      
-window.onclick = function(event) {
-  if (event.target == popupEl) {
-    popupEl.style.display = "none";
-  }
-}
-
-      
+    <script src ="main.js"></script>
+    <script>
       var myProgressBar = new Progressor({
        media : document.getElementsByTagName('audio')[0],
        bar : document.getElementsByClassName('progressbar')[0],
@@ -339,7 +118,7 @@ window.onclick = function(event) {
         });
         doc.save('typeaudio.pdf');
     });
-   </script>
+    </script>
   </body>
 </html>
 <!--https://codepen.io/dmack/pen/VLxpyv?editors=1111-->
