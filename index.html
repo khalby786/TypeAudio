@@ -50,9 +50,18 @@
       <div class = "my-input-holder">      
       </div>
 
-      <iframe id = "youtube" width="200" src = "">
+      <iframe id = "youtube" width="200" src = "" frameBorder="0">
 
       </iframe>
+      
+      <video width = "200" id = "bllly" controls>
+        <source src="" id = "blly">
+        Your browser does not support the video tag.
+      </video>
+      
+      <button onclick = "closeyoutubeiframe()" id = "closeEl">
+        Close
+      </button>
       
       <div id = "mobilewarning">
         <br><br><br><br>Please switch to a mordern desktop browser as TypeAudio does not support mobile platforms.
@@ -67,27 +76,43 @@
       <b><div id = "wc"><b></b></div></b>
     </button>
     <div id = "morecontent">
-      <b><span id = "morecontenttitle">
-        Tools.<br>
-        </span></b>
-      <button class="bottombtn" onclick="printf()"><b>PRINT</b></button>
-      <br><br>EXPORT:<br><br><button id="cmd" class="bottombtn"><b>EXPORT PDF</b></button><br>
-      <button id="btn-export" class="bottombtn" onclick="Export2Doc('textbox')"><b>EXPORT AS DOC</b></button><br>
-      <button class="bottombtn" onclick="downloadInnerHtml()"><b>EXPORT AS .TXT</b></button>
-      <section id = "otinput"><br><br></section>
-      <button class = "bottombtn" onclick = "verybigyoutube()">LOAD YOUTUBE VIDEOS</button>
+      <button class = "bottombtnn" onclick = "closemorecontent()">Close!</button>
+      <b><section id = "morecontenttitle">
+        <b>TOOLS</b><br>
+        </section></b>
+      <button class = "collapsible">LOAD AUDIO OR VIDEO FILE</button>
+      <div class = "content">
+        <br><section id = "otinput"><br><br></section><br>
+        <button class = "bottombtn" onclick = "verybigyoutube()">LOAD YOUTUBE VIDEOS</button><br><br>
+        <input type = "file" class = "bottombtn" value = "LOAD VIDEO FILES" id = "bll"><br><br>
+      </div><br>
+      <button class = "collapsible">PRINT TRANSCRIPT</button>
+      <div class = "content">
+        <button class="bottombtn" onclick="printf()"><b>PRINT</b></button>
+      </div><br>
+      <button class = "collapsible">EXPORT TRANSCRIPT</button>
+      <div class = "content">
+        <br><br>EXPORT:<br><br><button id="cmd" class="bottombtn"><b>EXPORT PDF</b></button><br>
+        <button id="btn-export" class="bottombtn" onclick="Export2Doc('textbox')"><b>EXPORT AS DOC</b></button><br>
+        <button class="bottombtn" onclick="downloadInnerHtml()"><b>EXPORT AS .TXT</b></button>
+      </div>
     </div>
     
     <div id="editor"></div>
     
-    <div id = "youtubeLoad">
+    <center><div id = "youtubeLoad">
       To load a YouTube file, simply copy the last random digits of the URL of the YouTube video and paste it here.<br><br>
-      <image src = "https://cdn.glitch.com/f24aaa89-a083-477a-8553-68ad2d194adf%2FCapture.JPG?v=1564675584420"></image><br>
+      <image src = "https://cdn.glitch.com/f24aaa89-a083-477a-8553-68ad2d194adf%2FCapture.JPG?v=1564675584420"></image><br><br>
       <input type = "text" id = "lastid">
       <button id = "getyoutubeurl" onclick = "loadyoutube()">
         SUBMIT
+      </button><br>
+      <button class = "bottombtnn" id ="cancel" onclick = "closepopup()">
+        Cancel!
       </button>
-    </div>
+    </div></center>
+    
+    <div id = "status"></div>
     
     <script src="progressor.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="pace.js"></script>

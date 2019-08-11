@@ -10680,8 +10680,8 @@ return jQuery;
         if (typeof element === 'undefined') {
             throw('must specify container element');
         }
-        var buttonText = this._text.button || 'Choose audio (or video) file';
-        var button = '<button class="btn-file-input" style="width: 100%;">'+buttonText+'</button>';
+        var buttonText = this._text.button || 'Choose audio file';
+        var button = '<button class="btn-file-input" style="width: 100%;" id = "rll">'+buttonText+'</button>';
         var fileInputStyle = [
             'position: absolute',
             'top: 0',
@@ -10755,8 +10755,19 @@ return jQuery;
       element: '#otinput',
       onFileChange: function(file){
         console.log('File name is: '+file.name);
-        var audiofile = document.getElementsByTagName('audio')[0];
-        audiofile.src = url;
+        $("#rlly").attr("src", URL.createObjectURL(file));
+        document.getElementById("rllly").load();
+        console.log("Audio is loaded!");
+        /*var audiofile = document.getElementsByTagName('audio')[0];
+        audiofile.src = file;*/
+        //function handleFiles(event) {
+          //var files = event.target.files;
+          /*$("#rlly").attr("src", URL.createObjectURL(file[0]));
+          document.getElementById("rllly").load();
+          console.log("Audio is loaded!");*/
+        //}
+
+        //document.getElementById("rll").addEventListener("change", handleFiles, false);
       },
       onURLSubmit: function(url){
         console.log('URL is: '+url);
@@ -10775,11 +10786,18 @@ return jQuery;
       
       function loadyoutube() {
         var getText = document.getElementById('lastid').value;
-        var linkenter = document.getElementById('youtubeLoad');
-        linkenter.style.display = "none";
-        var youtube = document.getElementById('youtube');
-        getTextNew = "https://www.youtube.com/embed/" + getText;
-        youtube.src = getTextNew;
+        if (getText == '') {
+          var linkenter = document.getElementById('youtubeLoad');
+          linkenter.style.display = "none";
+        } else {
+          var linkenter = document.getElementById('youtubeLoad');
+          linkenter.style.display = "none";
+          var youtube = document.getElementById('youtube');
+          var getTextNew = "https://www.youtube.com/embed/" + getText;
+          youtube.src = getTextNew;
+          var closeButton = document.getElementById('closeEl');
+          closeButton.style.display = 'block';
+        }
       }
       
       $(document).ready(function() {
@@ -10996,4 +11014,68 @@ function essential() {
     var warning = document.getElementById('mobilewarning');
     warning.style.display = "block";
   }
+}
+
+function closepopup() {
+  var popup = document.getElementById('youtubeLoad');
+  popup.style.display = "none";
+}
+
+function closemorecontent() {
+  var morecontent = document.getElementById('morecontent');
+  morecontent.style.display = "none";
+}
+
+function handleVFiles(event) {
+	document.getElementById('bllly').style.display = "block";
+  var files = event.target.files;
+	$("#blly").attr("src", URL.createObjectURL(files[0]));
+	document.getElementById("bllly").load();
+  var closeButton = document.getElementById('closeEl');
+  closeButton.style.display = "block";
+}
+
+document.getElementById("bll").addEventListener("change", handleVFiles, false);
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+
+window.addEventListener('load', function() {
+  var status = document.getElementById("status");
+
+  function updateOnlineStatus(event) {
+    var condition = navigator.onLine ? "online" : "offline";
+    console.log(condition);
+
+    status.className = condition;
+    status.innerHTML = condition.toUpperCase();
+    
+    if (condition === "online") {
+      status
+    }
+  }
+  window.addEventListener('online',  updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+});
+
+function closeyoutubeiframe() {
+  console.log("close initiated!")
+  var el1 = document.getElementById('youtube');
+  var el2 = document.getElementById('bllly');
+  el1.style.display = "none";
+  el2.style.display = "none";
+  var closeButton = document.getElementById('closeEl');
+  closeButton.style.display = "none";
 }
