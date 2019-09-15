@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html>
   <head>
     <title>TypeAudio</title>
@@ -60,7 +60,7 @@
       </video>
       
       <button onclick = "closeyoutubeiframe()" id = "closeEl">
-        Close
+        X
       </button>
       
       <div id = "mobilewarning">
@@ -70,27 +70,24 @@
     </div>
     
     <button class = "more" onclick = "showmorecontent()">
-      More!
+      <b>&#9881;</b>
     </button>
     <button class = "wc">
       <b><div id = "wc"><b></b></div></b>
     </button>
     <div id = "morecontent">
-      <button class = "bottombtnn" onclick = "closemorecontent()">Close!</button>
-      <b><section id = "morecontenttitle">
-        <b>TOOLS</b><br>
-        </section></b>
-      <button class = "collapsible">LOAD AUDIO OR VIDEO FILE</button>
+      <button class = "bottombtnn" onclick = "closemorecontent()">X</button>
+      <button class = "collapsible" id = "collapsible1">LOAD AUDIO OR VIDEO FILE</button>
       <div class = "content">
         <br><section id = "otinput"><br><br></section><br>
         <button class = "bottombtn" onclick = "verybigyoutube()">LOAD YOUTUBE VIDEOS</button><br><br>
         <input type = "file" class = "bottombtn" value = "LOAD VIDEO FILES" id = "bll"><br><br>
       </div><br>
-      <button class = "collapsible">PRINT TRANSCRIPT</button>
+      <button class = "collapsible" id = "collapsible2">PRINT TRANSCRIPT</button>
       <div class = "content">
         <button class="bottombtn" onclick="printf()"><b>PRINT</b></button>
       </div><br>
-      <button class = "collapsible">EXPORT TRANSCRIPT</button>
+      <button class = "collapsible" id = "collapsible3">EXPORT TRANSCRIPT</button>
       <div class = "content">
         <br><br>EXPORT:<br><br><button id="cmd" class="bottombtn"><b>EXPORT PDF</b></button><br>
         <button id="btn-export" class="bottombtn" onclick="Export2Doc('textbox')"><b>EXPORT AS DOC</b></button><br>
@@ -112,7 +109,7 @@
       </button>
     </div></center>
     
-    <div id = "status"></div>
+    <div id = "status"><i>Hello</i></div>
     
     <script src="progressor.min.js" type="text/javascript" charset="utf-8"></script>
     <script src="pace.js"></script>

@@ -92,7 +92,10 @@ button {
   outline: none;
   color: black;
   background-color: white;
-  border: none;
+  border-top: 1px solid #c3c3c3;
+  border-left: 1px solid #c3c3c3;
+  border-right: 1px solid #c3c3c3;
+  border-bottom: 1px solid #c3c3c3;
   border-radius: 15px;
   box-shadow: 4px 6px #999;
   padding-top: 5px;
@@ -114,131 +117,6 @@ button {
   transform: translateY(3px);
 }
 
-/*#button1 {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  color: #222;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 600;
-  background-color: #fff;
-  border: solid #222 2px;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 6px 12px;
-  cursor: pointer;
-  position: relative;
-  vertical-align: middle;
-  text-decoration: none;
-  box-sizing: border-box;
-  font-family: "Roboto"
-}
-
-#button2 {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  color: #222;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 600;
-  background-color: yellow;
-  border: solid #222 2px;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 6px 12px;
-  cursor: pointer;
-  position: relative;
-  vertical-align: middle;
-  text-decoration: none;
-  box-sizing: border-box;
-  font-family: "Roboto"
-}
-
-#button3 {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  color: #222;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 600;
-  background-color: orange;
-  border: solid #222 2px;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 6px 12px;
-  cursor: pointer;
-  position: relative;
-  vertical-align: middle;
-  text-decoration: none;
-  box-sizing: border-box;
-  font-family: "Roboto"
-}
-
-#button4 {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  color: #222;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 600;
-  background-color: pink;
-  border: solid #222 2px;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 6px 12px;
-  cursor: pointer;
-  position: relative;
-  vertical-align: middle;
-  text-decoration: none;
-  box-sizing: border-box;
-  font-family: "Roboto"
-}
-
-#button5 {
-  padding-top: 5px;
-  padding-bottom: 5px;
-  color: white;
-  font-size: 14px;
-  line-height: 14px;
-  font-weight: 600;
-  background-color: black;
-  border: solid #222 2px;
-  display: inline-block;
-  border-radius: 5px;
-  padding: 6px 12px;
-  cursor: pointer;
-  position: relative;
-  vertical-align: middle;
-  text-decoration: none;
-  box-sizing: border-box;
-  font-family: "Roboto"
-}
-
-body {
-  background-color: yellow;
-  -webkit-animation-name: changeColor; 
-  -webkit-animation-duration: 6s; 
-  animation-name: changeColor;
-  animation-duration: 6s;
-  animation-iteration-count: infinite;
-}
-
-@-webkit-keyframes changeColor {
-  0%   {background-color:red;}
-  25%  {background-color:yellow;}
-  50%  {background-color:blue;}
-  75%  {background-color:purple;}
-  100% {background-color:red;}
-}
-
-
-@keyframes changeColor {
-  0%   {background-color:red;}
-  25%  {background-color:yellow;}
-  50%  {background-color:blue;}
-  75%  {background-color:purple;}
-  100% {background-color:red;}
-}*/
 body {
   /*background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);*/
   font-family: "Roboto", sans-serif;
@@ -298,26 +176,16 @@ audio {
   outline: none;
   color: black;
   background-color: #F0FFFF;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 4px 6px #999;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  border-radius: 5px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   font-size: 14px;
   position: relative;
   font-family: "Roboto", "Helvetica", sans-serif;
-}
-
-.textformatstyles:hover {
-	background-color: #FFFAFA;
-  box-shadow: 4px 5px #999;
-  transform: translateY(1px)
-}
-
-.textformatstyles:active {
-  background-color: #FFFAFA;
-  box-shadow: 4px 2px #999;
-  transform: translateY(3px);
+  border-top: 1px solid #c3c3c3;
+  border-left: 1px solid #c3c3c3;
+  border-right: 1px solid #c3c3c3;
+  border-bottom: 1px solid #c3c3c3; 
 }
 
 .timestamp {
@@ -332,24 +200,14 @@ audio {
   outline: none;
   color: black;
   background-color: #F0FFFF;
-  border: none;
   border-radius: 5px;
-  box-shadow: 4px 5px #999;
   position: relative;
   font-family: "Roboto", "Helvetica", sans-serif;
   margin-bottom: 10px;
-}
-
-.bottombtn:hover {
-	background-color: #FFFAFA;
-  box-shadow: 4px 4px #999;
-  transform: translateY(1px)
-}
-
-.bottombtn:active {
-  background-color: #FFFAFA;
-  box-shadow: 4px 1px #999;
-  transform: translateY(3px);
+  border-top: 1px solid #c3c3c3;
+  border-left: 1px solid #c3c3c3;
+  border-right: 1px solid #c3c3c3;
+  border-bottom: 1px solid #c3c3c3;
 }
 
 .pace {
@@ -377,47 +235,36 @@ audio {
 
 .more {
   position: fixed;
-  bottom: 15;
+  bottom: 15px;
   margin-left: 15px;
-  padding-top: 10px;
-  padding-left: 20px;
-  padding-bottom: 10px;
-  padding-right: 20px;
+  padding-left: 8px;
+  padding-right: 8px;
   font-size: 24px;
   text-align: center;
   cursor: pointer;
   outline: none;
   color: black;
   background-color: #F0FFFF;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 4px 6px #999;
+  border-top: 1px solid #c3c3c3;
+  border-left: 1px solid #c3c3c3;
+  border-right: 1px solid #c3c3c3;
+  border-bottom: 1px solid #c3c3c3;
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: 14px;
   font-family: "Roboto", "Helvetica", sans-serif;
-}
-
-.more:hover {
-	background-color: #FFFAFA;
-  box-shadow: 4px 5px #999;
-  transform: translateY(1px)
-}
-
-.more:active {
-  background-color: #FFFAFA;
-  box-shadow: 4px 2px #999;
-  transform: translateY(3px);
+  border-radius: 5px;
+  
 }
 
 #morecontent {
   width: 300px;
   height: -webkit-fit-content;
-  left: 10;
-  bottom: 70;
+  left: 10px;
+  bottom: 70px;
   position: fixed;
   background-color: white;
-  padding: 24px 20px 24px 20px;
+  padding: 24px 0px 24px 0px;
   border-top: 1px solid black;
   border-left: 1px solid black;
   border-right: 1px solid black;
@@ -442,19 +289,19 @@ audio {
   width: 75%;
   bottom: 50%;
   display: none;
-  left: 10%
+  left: 10%;
 }
       
 #youtube {
-  left: 20;
+  left: 20px;
   position: fixed;
   top: 200px;
 }
 
 .wc {
   position: fixed;
-  bottom: 15;
-  margin-left: 100px;
+  bottom: 15px;
+  margin-left: 70px;
   padding-top: 10px;
   padding-left: 20px;
   padding-bottom: 10px;
@@ -465,25 +312,15 @@ audio {
   outline: none;
   color: black;
   background-color: #F0FFFF;
-  border: none;
-  border-radius: 15px;
-  box-shadow: 4px 6px #999;
   padding-top: 5px;
   padding-bottom: 5px;
   font-size: 14px;
   font-family: "Roboto", "Helvetica", sans-serif;
-}
-
-.wc:hover {
-	background-color: #FFFAFA;
-  box-shadow: 4px 5px #999;
-  transform: translateY(1px)
-}
-
-.wc:active {
-  background-color: #FFFAFA;
-  box-shadow: 4px 2px #999;
-  transform: translateY(3px);
+  border-top: 1px solid #c3c3c3;
+  border-left: 1px solid #c3c3c3;
+  border-right: 1px solid #c3c3c3;
+  border-bottom: 1px solid #c3c3c3;
+  border-radius: 5px;
 }
 
 #mobilewarning {
@@ -510,23 +347,12 @@ audio {
   color: white;
   background-color: red;
   border: none;
-  border-radius: 5px;
-  box-shadow: 4px 5px #999;
   position: relative;
   font-family: "Roboto", "Helvetica", sans-serif;
   margin-bottom: 10px;
-}
-
-.bottombtnn:hover {
-	background-color: red;
-  box-shadow: 4px 4px #999;
-  transform: translateY(1px)
-}
-
-.bottombtnn:active {
-  background-color: red;
-  box-shadow: 4px 1px #999;
-  transform: translateY(3px);
+  float: right;
+  border-radius: 5px;
+  margin-right: 15px;
 }
 
 #bllly {
@@ -542,18 +368,13 @@ audio {
   cursor: pointer;
   padding: 10px;
   width: 100%;
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid #c3c3c3;
+  border-bottom: 1px solid #c3c3c3;
   text-align: left;
   outline: none;
   font-size: 15px;
-  border-radius: 9px;
-}
-
-.active, .collapsible:hover {
-  background-color: #DCDCDC;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
 }
 
 .content {
@@ -566,14 +387,17 @@ audio {
 
 #status {
   position: fixed;
-  right: 10;
-  bottom: 10;
+  right: 10px;
+  bottom: 10px;
   /*color: #FFF;*/
-  height: 20px;
-  border-radius: 9px;
-  width: 80px;
-  padding-left: 12px;
-  padding-right: 12px;
+  border-radius: 5px;
+  text-align: center;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-right: 20px;
+  font-size: 24px;
+  
 }
 
 .online {
@@ -590,5 +414,20 @@ audio {
   position: fixed;
   left: 20;
   top: 150px;
-  display = "none";
+  display: none;
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+}
+
+#collapsible1 {
+  background-color: #f5f5f5;
+}
+
+#collapsible2 {
+  background-color: #f5f5f5;
+}
+
+#collapsible3 {
+  background-color: #f5f5f5;
 }
