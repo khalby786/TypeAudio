@@ -4,6 +4,7 @@
 ### TypeAudio is a website for transcribing videos and audios.
 Load files from computer and start transcribing!
 
+* Load video and audio files as well as YouTube videos by URL or file to start transcribing.
 * F1 to rewind.
 * F2 to fast-forward.
 * F3 to insert interactive timestamps.
@@ -12,4 +13,4 @@ Load files from computer and start transcribing!
 
 Print and export text as PDF, .TXT or Word Document.
 
-Visit site at [http://www.typeaudio.glitch.me](http://www.typeaudio.glitch.me)
+Visit site at [https://www.typeaudio.glitch.me](https://www.typeaudio.glitch.me)
