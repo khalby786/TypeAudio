@@ -10695,7 +10695,7 @@ return jQuery;
         var altButtonText = this._text.altButton || 'Enter file URL';
         var altButton = '<button class="alt-input-button">'+altButtonText+'</button>';
         var urlInputText = this._text.altInputText || 'Enter URL of audio or video file:';
-        var urlInputClose = this._text.closeAlt || 'close';
+        var urlInputClose = this._text.closeAlt || '<button class = "bottombtnn">X</button>';
         var urlInput = '<div class="ext-input-field" style="display: none;"><div class="close-ext-input">'+urlInputClose+'</div><label>'+urlInputText+'<input type="text"></label><div class="ext-input-warning"></div></div>';
         $(element).html( wrapper + altButton + urlInput ); 
         return $(element)[0];
@@ -10988,7 +10988,7 @@ window.onclick = function(event) {
   }
 }
 
-function essential() {
+/*function essential() {
   var isMobile = {
     Android: function() {
         return navigator.userAgent.match(/Android/i);
@@ -11014,7 +11014,7 @@ function essential() {
     var warning = document.getElementById('mobilewarning');
     warning.style.display = "block";
   }
-}
+}*/
 
 function closepopup() {
   var popup = document.getElementById('youtubeLoad');

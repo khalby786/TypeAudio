@@ -2,9 +2,9 @@
 <html>
   <head>
     <title>TypeAudio</title>
-    <link rel="icon"  type="image/png" href="https://cdn.glitch.com/f24aaa89-a083-477a-8553-68ad2d194adf%2FCopy%20of%20ovember%202019.png?v=1562222903630">
+    <link rel="icon"  type="image/png" href="https://cdn.glitch.com/66ea34a8-d886-4d26-b80f-24392e5a9466%2FUntitled%20design.png?v=1571496810821">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <meta name="description" content="Transribe audio files.">
+    <meta name="description" content="An online tool for easy manual transcribing of audios and videos.">
     <meta name="keywords" content="transcribe, transcribing, free, online, khaleel, gibran, audiofiles, audio, typeaudio, TypeAudio">
     <meta name="author" content="Khaleel Gibran">
     <meta name="google-site-verification" content="7rh8yEjrv93O6eXvxVl-v6TZiuZ0mn2M6tdq7hAq1W4" />
@@ -13,7 +13,7 @@
       
     </style>
   </head>
-  <body onload = "essential()">
+  <body>
     <div id = "whole">
     
       <header id = "header">
@@ -42,7 +42,10 @@
         <button class = "button" onclick = "rewindAudio()">&#9194;</button><br><br>
         <button class = "button" onclick = "fastAudio()">&#9193;</button><br><br>
         <button class = "button" onclick = "insertTimestamp()">&#128339;</button><br><br>
+       
         <a href = "https://www.typeaudio.glitch.me"><button class = "button">&#8634;</button><br><br></a>
+        <a href = "/about"><button class = "button" id = "help">&#x3f;</button></a>
+        
       </div>
       <div id = "textbox" contenteditable = "true">
       </div>
@@ -64,7 +67,6 @@
       </button>
       
       <div id = "mobilewarning">
-        <br><br><br><br>Please switch to a mordern desktop browser as TypeAudio does not support mobile platforms.
       </div>
       
     </div>
@@ -109,12 +111,13 @@
       </button>
     </div></center>
     
+    <a href = "/old"><button id = "old"></button></a>
     <div id = "status"><i>Hello</i></div>
     
+    <script src = "pace.js"></script>
     <script src="progressor.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="pace.js"></script>
-    <script src= "script.js"></script>
-    <script src ="main.js"></script>
+    <script src ="client.js"></script>
+    <script src = "main.js"></script>
     <script>
       var myProgressBar = new Progressor({
        media : document.getElementsByTagName('audio')[0],
