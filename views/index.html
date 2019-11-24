@@ -25,26 +25,23 @@
           <div class="progressbar"></div>
           <h5 id = "time"></h5>
           <div id = "textformat">
-            <button class = "textformatstyles" id="jBold"><b>B</b></button>
-            <button class = "textformatstyles" id= "jItalic"><i>I</i></button>
-            <button class = "textformatstyles" id= "jUnder"><u>U</u></button>
-            <button class = "textformatstyles" id= "jCut">Cut</button>
-            <button class = "textformatstyles" id= "jLess">&#8690</button>
-            <button class = "textformatstyles" id= "jMore">&#8689</button>
-            <button class = "textformatstyles" id= "jUndo">&olarr;</button>
-            <button class = "textformatstyles" id= "jRedo">&orarr;</button><br><br>
+            <button class = "textformatstyles" id="jBold" title = "Bold "><b>B</b></button>
+            <button class = "textformatstyles" id= "jItalic" title = "Italics"><i>I</i></button>
+            <button class = "textformatstyles" id= "jUnder" title = "Underline"><u>U</u></button>
+            <button class = "textformatstyles" id= "jUndo" title = "Undo">&olarr;</button>
+            <button class = "textformatstyles" id= "jRedo" title = "Redo">&orarr;</button><br><br>
           </div>
          </div>
       </header>
       <div id = "control">
-        <button class = "button" onclick = "playPause()">||</button><br><br>
-        <button class = "button" onclick = "playPause()">&#9658;</button><br><br>
-        <button class = "button" onclick = "rewindAudio()">&#9194;</button><br><br>
-        <button class = "button" onclick = "fastAudio()">&#9193;</button><br><br>
-        <button class = "button" onclick = "insertTimestamp()">&#128339;</button><br><br>
+        <button class = "button" onclick = "playPause()" title = "Pause the audio.">||</button><br><br>
+        <button class = "button" onclick = "playPause()" title = "Play the audio.">&#9658;</button><br><br>
+        <button class = "button" onclick = "rewindAudio()" title = "Rewind the audio.">&#9194;</button><br><br>
+        <button class = "button" onclick = "fastAudio()" title = "Fastforward the audio.">&#9193;</button><br><br>
+        <button class = "button" onclick = "insertTimestamp()" title = "Insert interactive timestamp.">&#128339;</button><br><br>
        
         <a href = "https://www.typeaudio.glitch.me"><button class = "button">&#8634;</button><br><br></a>
-        <a href = "/about"><button class = "button" id = "help">&#x3f;</button></a>
+        <a href = "/about"><button class = "button" id = "help" title = "About & Help">&#x3f;</button></a>
         
       </div>
       <div id = "textbox" contenteditable = "true">
@@ -82,8 +79,8 @@
       <button class = "collapsible" id = "collapsible1">LOAD AUDIO OR VIDEO FILE</button>
       <div class = "content">
         <br><section id = "otinput"><br><br></section><br>
-        <button class = "bottombtn" onclick = "verybigyoutube()">LOAD YOUTUBE VIDEOS</button><br><br>
-        <input type = "file" class = "bottombtn" value = "LOAD VIDEO FILES" id = "bll"><br><br>
+        <button class = "bottombtn" onclick = "verybigyoutube()" title = "Load YouTube videos to transcribe.">LOAD YOUTUBE VIDEOS</button><br><br>
+        <input type = "file" class = "bottombtn" value = "LOAD VIDEO FILES" id = "bll" title = "Browse for video files from your computer to transcribe."><br><br>
       </div><br>
       <button class = "collapsible" id = "collapsible2">PRINT TRANSCRIPT</button>
       <div class = "content">
@@ -112,7 +109,7 @@
     </div></center>
     
     <a href = "/old"><button id = "old"></button></a>
-    <div id = "status"><i>Hello</i></div>
+    <div id = "status"><i>&nbsp;</i></div>
     
     <script src = "pace.js"></script>
     <script src="progressor.min.js" type="text/javascript" charset="utf-8"></script>
