@@ -10680,8 +10680,8 @@ return jQuery;
         if (typeof element === 'undefined') {
             throw('must specify container element');
         }
-        var buttonText = this._text.button || 'Choose audio file';
-        var button = '<button class="btn-file-input" style="width: 100%;" id = "rll">'+buttonText+'</button>';
+        var buttonText = this._text.button || 'CHOOSE AUDIO FILE';
+        var button = '<button class="btn-file-input bottombtn" style="width: 100%;" id = "rll" title = "Browse for audio files from your computer to transcribe.">'+buttonText+'</button>';
         var fileInputStyle = [
             'position: absolute',
             'top: 0',
@@ -10692,9 +10692,9 @@ return jQuery;
         var fileInput = '<input type="file" accept="audio/*, video/*" style="'+fileInputStyle+'">';
         var wrapperStyle = 'position: relative; overflow: hidden;';
         var wrapper = '<div class="file-input-wrapper" style="'+wrapperStyle+'">'+button+fileInput+'</div>';
-        var altButtonText = this._text.altButton || 'Enter file URL';
-        var altButton = '<button class="alt-input-button">'+altButtonText+'</button>';
-        var urlInputText = this._text.altInputText || 'Enter URL of audio or video file:';
+        var altButtonText = this._text.altButton || 'ENTER AUDIO URL';
+        var altButton = '<button class="alt-input-button bottombtn" title = "Load audio files from a URL.">'+altButtonText+'</button>';
+        var urlInputText = this._text.altInputText || 'Enter URL of audio file:';
         var urlInputClose = this._text.closeAlt || '<button class = "bottombtnn">X</button>';
         var urlInput = '<div class="ext-input-field" style="display: none;"><div class="close-ext-input">'+urlInputClose+'</div><label>'+urlInputText+'<input type="text"></label><div class="ext-input-warning"></div></div>';
         $(element).html( wrapper + altButton + urlInput ); 
@@ -10815,24 +10815,6 @@ return jQuery;
       $(document).ready(function() {
         $('#jUnder').click(function() {
           document.execCommand('underline');
-        });
-      });
-
-      $(document).ready(function() {
-        $('#jCut').click(function() {
-          document.execCommand('cut');
-        });
-      });
-
-      $(document).ready(function() {
-        $('#jLess').click(function() {
-          document.execCommand('decreaseFontSize');
-        });
-      });
-
-      $(document).ready(function() {
-        $('#jMore').click(function() {
-          document.execCommand('increaseFontSize');
         });
       });
 
