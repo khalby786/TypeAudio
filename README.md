@@ -1,4 +1,5 @@
-[![GitHub release](https://img.shields.io/github/release/khalby786/TypeAudio.svg)](https://GitHub.com/khalby786/TypeAudio/releases/)[![GitHub license](https://img.shields.io/github/license/khalby786/TypeAudio.svg)](https://github.com/khalby786/TypeAudio/blob/master/LICENSE)
+[![GitHub release](https://img.shields.io/github/release/khalby786/TypeAudio.svg)](https://GitHub.com/khalby786/TypeAudio/releases/)
+[![GitHub license](https://img.shields.io/github/license/khalby786/TypeAudio.svg)](https://github.com/khalby786/TypeAudio/blob/master/LICENSE)
 
 ### TypeAudio is a website for transcribing videos and audios.
 Load files from computer and start transcribing!
